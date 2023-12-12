@@ -1,8 +1,8 @@
 <script setup>
 import cadena from '../assets/inputDay06.txt?raw'
 import { ref } from 'vue'
-import Button from 'primevue/button';
-import useToggleResultados from '../composables/useToggleResultados';
+import useToggleResultadosPartes from '../composables/useToggleResultadosPartes';
+import DayBase from './DayBase.vue';
 
 const resultadoParte1 = ref(0);
 const resultadoParte2 = ref(0);
@@ -35,28 +35,19 @@ const parte2 = () => {//busca un patron pero en bloques de 14 caracteres
 resultadoParte2.value = parte2();
 
 //pasar la funcion correspondiente como argumento
-const { mostrarResultados, toggleResultados } = useToggleResultados(parte1, parte2);
+const { mostrarResultados, toggleResultadosPartes } = useToggleResultadosPartes(parte1, parte2);
 
 </script>
 
 <template>
-  <div class="p-container pt-6 contenedor">
-    <p>Al dar clic en el botón se verán los resultados para el ejercicio del Día 6</p>
-    <div class="p-d-flex p-flex-column p-jc-center">
-      <Button class="p-mb-4 boton bg-green-400 hover:bg-green-900 border-none" @click="toggleResultados">
-        {{ mostrarResultados ? 'Ocultar resultados' : 'Mostrar resultados' }}
-      </Button>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 1</p>
-        <p>Deben procesarse {{ resultadoParte1 }} caracteres, para detectar paquetes.</p>
-      </div>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 2</p>
-        <p> Deben procesarse {{ resultadoParte2 }} caracteres antes de que se detecte el primer marcador de inicio de mensaje.
-        </p>
-      </div>
-    </div>
-  </div>
+          <DayBase
+      description="Al dar clic en el botón se verán los resultados para el ejercicio del Día 6"
+      :mensajeParte1="'Deben procesarse ' + resultadoParte1 + ' caracteres, para detectar paquetes.'"
+      :mensajeParte2="'Deben procesarse ' + resultadoParte2 + ' caracteres antes de que se detecte el primer marcador de inicio de mensaje.'"
+      :mostrarResultados="mostrarResultados"
+      :click="toggleResultadosPartes"
+    />
+
 </template>
 
 <style scoped></style>

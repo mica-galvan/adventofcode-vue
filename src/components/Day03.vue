@@ -1,8 +1,8 @@
 <script setup>
 import rucksacks from '../assets/inputDay03.txt?raw'
 import { ref } from 'vue'
-import Button from 'primevue/button';
-import useToggleResultados from '../composables/useToggleResultados';
+import useToggleResultadosPartes from '../composables/useToggleResultadosPartes';
+import DayBase from './DayBase.vue';
 
 const resultadoParte1 = ref(0);
 const resultadoParte2 = ref(0);
@@ -77,26 +77,17 @@ const parte2 = () => {
   }
 };
 //pasar la funcion correspondiente como argumento
-const { mostrarResultados, toggleResultados } = useToggleResultados(parte1,parte2);
+const { mostrarResultados, toggleResultadosPartes } = useToggleResultadosPartes(parte1,parte2);
 </script>
 
 <template>
- <div class="p-container pt-6 contenedor">
-    <p>Al dar clic en el botón se verán los resultados para el ejercicio del Día 3</p>
-    <div class="p-d-flex p-flex-column p-jc-center">
-      <Button class="p-mb-4 boton bg-green-400 hover:bg-green-900 border-none" @click="toggleResultados">
-        {{ mostrarResultados ? 'Ocultar resultados' : 'Mostrar resultados' }}
-      </Button>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 1</p>
-        <p>La suma de las prioridades repetidas en las mochilas es: {{ resultadoParte1 }}</p>
-      </div>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 2</p>
-        <p>La suma de las prioridades repetidas en las mochilas es: {{ resultadoParte2 }}</p>
-      </div>
-    </div>
-  </div>
+        <DayBase
+      description="Al dar clic en el botón se verán los resultados para el ejercicio del Día 3"
+      :mensajeParte1="'La suma de las prioridades repetidas en las mochilas es: ' + resultadoParte1"
+      :mensajeParte2="'La suma de las prioridades repetidas en las mochilas es: ' + resultadoParte2"
+      :mostrarResultados="mostrarResultados"
+      :click="toggleResultadosPartes"
+    />
 </template>
 
 <style scoped>

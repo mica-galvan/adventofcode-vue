@@ -1,10 +1,10 @@
-//import './style.css'//ver si no pisa a primeflex
+//main.js
+import './style.css'
 import "primeflex/primeflex.css";
 import "primevue/resources/themes/lara-light-green/theme.css";//tema puede variar
 import "primevue/resources/primevue.min.css"; /* Deprecated */
 import "primeicons/primeicons.css";
 import "./style.css";
-import "./flags.css";//agregado
 
 import { createApp } from "vue";
 import App from "./App.vue";

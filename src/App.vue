@@ -1,3 +1,4 @@
+<!-- App.vue -->
 <script setup>
 //setup => (aparentemente) importa y exporta automaticamente.
 import NavMenu from './components/NavMenu.vue';
@@ -6,7 +7,8 @@ import PrimeVue from 'primevue/config';
 
 <template>
  <NavMenu/>
- <router-view />
+<router-view /> 
+
 </template>
 
 <style scoped>

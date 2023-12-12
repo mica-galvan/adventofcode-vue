@@ -1,8 +1,8 @@
 <script setup>
 import secciones from '../assets/inputDay04.txt?raw'
 import { ref } from 'vue'
-import Button from 'primevue/button';
-import useToggleResultados from '../composables/useToggleResultados';
+import useToggleResultadosPartes from '../composables/useToggleResultadosPartes';
+import DayBase from './DayBase.vue';
 
 const resultadoParte1 = ref(0); // la función ref crea variables reactivas, inicializadas en 0 (tipo dom para mostrar en el template) almacenarán la cantidad de secciones intersectadas
 const resultadoParte2 = ref(0);
@@ -60,27 +60,18 @@ for (let par of misSecciones2) {
 resultadoParte2.value=seccionesIntersectadas2
 };
 //pasar la funcion correspondiente como argumento
-const { mostrarResultados, toggleResultados } = useToggleResultados(parte1, parte2);
+const { mostrarResultados, toggleResultadosPartes } = useToggleResultadosPartes(parte1, parte2);
 
 </script>
 
 <template>
-  <div class="p-container pt-6 contenedor">
-    <p>Al dar clic en el botón se verán los resultados para el ejercicio del Día 4</p>
-    <div class="p-d-flex p-flex-column p-jc-center">
-      <Button class="p-mb-4 boton bg-green-400 hover:bg-green-900 border-none" @click="toggleResultados">
-        {{ mostrarResultados ? 'Ocultar resultados' : 'Mostrar resultados' }}
-      </Button>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 1</p>
-        <p>Se pisan completamente {{ resultadoParte1 }} secciones</p>
-      </div>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 2</p>
-        <p>Se pisan parcial o completamente {{ resultadoParte2 }} secciones</p>
-      </div>
-    </div>
-  </div>
+        <DayBase
+      description="Al dar clic en el botón se verán los resultados para el ejercicio del Día 4"
+      :mensajeParte1="'Se pisan completamente ' + resultadoParte1 + ' secciones'"
+      :mensajeParte2="'Se pisan parcial o completamente ' + resultadoParte2 + ' secciones'"
+      :mostrarResultados="mostrarResultados"
+      :click="toggleResultadosPartes"
+    />
   </template>
 
 <style scoped>

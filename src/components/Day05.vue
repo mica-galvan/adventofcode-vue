@@ -1,8 +1,8 @@
 <script setup>
 import input from '../assets/inputDay05.txt?raw'
 import { ref } from 'vue'
-import Button from 'primevue/button';
-import useToggleResultados from '../composables/useToggleResultados';
+import useToggleResultadosResolver from '../composables/useToggleResultadosResolver';
+import DayBase from './DayBase.vue';
 
 //variables reactivas, guardan los resultados, actualizan el template automaticamente
 const resultadoParte1 = ref(0);
@@ -96,26 +96,18 @@ for (let caja of pilasInput) {
   resultadoParte2.value = resultadob;
 };
 //pasar la funcion correspondiente como argumento
-const { mostrarResultados, toggleResultados } = useToggleResultados(null, null, resolver);
+const { mostrarResultados, toggleResultadosResolver } = useToggleResultadosResolver(resolver);
 </script>
 
 <template>
-  <div class="p-container pt-6 contenedor">
-    <p>Al dar clic en el botón se verán los resultados para el ejercicio del Día 5</p>
-    <div class="p-d-flex p-flex-column p-jc-center">
-      <Button class="p-mb-4 boton bg-green-400 hover:bg-green-900 border-none" @click="toggleResultados">
-        {{ mostrarResultados ? 'Ocultar resultados' : 'Mostrar resultados' }}
-      </Button>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 1</p>
-        <p>Después de ordenar, quedan las cajas {{ resultadoParte1 }} encima de las pilas.</p>
-      </div>
-      <div v-if="mostrarResultados" class="p-mt-4 resultados">
-        <p>PARTE 2</p>
-        <p>Luego de ordenar nuevamente, quedan las cajas {{ resultadoParte2 }} encima de las pilas.</p>
-      </div>
-    </div>
-  </div>
+        <DayBase
+      description="Al dar clic en el botón se verán los resultados para el ejercicio del Día 5"
+      :mensajeParte1="'Después de ordenar, quedan las cajas ' + resultadoParte1 + ' encima de las pilas'"
+      :mensajeParte2="'Luego de ordenar nuevamente, quedan las cajas ' + resultadoParte2 + ' encima de las pilas'"
+      :mostrarResultados="mostrarResultados"
+      :click="toggleResultadosResolver"
+    />
+
 </template>
 
 <style scoped>

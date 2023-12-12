@@ -1,3 +1,4 @@
+//router.js
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Day01 from './components/Day01.vue';
 import Day02 from './components/Day02.vue';
