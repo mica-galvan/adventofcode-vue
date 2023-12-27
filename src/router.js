@@ -1,11 +1,10 @@
-//router.js
 import { createRouter, createWebHashHistory } from 'vue-router';
-import Day01 from './components/Day01.vue';
-import Day02 from './components/Day02.vue';
-import Day03 from './components/Day03.vue';
-import Day04 from './components/Day04.vue';
-import Day05 from './components/Day05.vue';
-import Day06 from './components/Day06.vue';
+import Day01 from './views/Day01.vue';
+import Day02 from './views/Day02.vue';
+import Day03 from './views/Day03.vue';
+import Day04 from './views/Day04.vue';
+import Day05 from './views/Day05.vue';
+import Day06 from './views/Day06.vue';
 import Home from './components/Home.vue';
 
 const routes = [

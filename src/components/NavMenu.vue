@@ -36,10 +36,11 @@ const toggleVisibility = () => {
 
 <template>
   <div>
-    <div :class="{'menu-visible': visible}" class="menu">
+    <div :class="{ 'menu-visible': visible }" class="menu">
       <Menu class="bg-black-alpha-90 border-none" :model="days">
         <template #item="{ item, index }">
-          <router-link class="text-white-alpha-90 font-bold text-lg p-2 no-underline hover:text-black-alpha-90 " v-if="item.route" :to="item.route">
+          <router-link class="text-white-alpha-90 font-bold text-lg p-2 no-underline hover:text-black-alpha-90 "
+            v-if="item.route" :to="item.route">
             {{ item.label }}
           </router-link>
           <a class="" v-else :href="item.url" :target="item.target">
